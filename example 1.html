@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>To-Do List</title>
+<style>
+    /* Optional CSS for styling */
+    body {
+        font-family:'Times New Roman', Times, serif;
+        background-image: url('../Desktop/studio.jpg'); /* Add your image URL here */
+        background-size:contain;
+        background-position: center;
+        height: 100vh; /* Make the background cover the entire viewport height */
+        justify-content: center;
+        align-items: center;
+        flex-direction:row-reverse; /* Align content vertically */
+        text-align: center;
+    }
+    h1 {
+        font-size: 120px; /* Adjust font size as needed */
+        font-weight: bold; /* Make the font bold */
+        color: rgb(28, 27, 27); /* Set font color */
+        margin-bottom: 20px; /* Add space between header and tasks */
+       text-align: center;
+    }
+    ul {
+        list-style-type: none;
+        padding: 0;
+        
+    }
+    li {
+        margin-bottom: 5px;
+    }
+    .completed {
+        text-decoration: line-through;
+        color: #888;
+       
+    }
+</style>
+</head>
+
+<body>
+
+<h1>TO-DO LIST</h1>
+
+<input type="text" id="taskInput" placeholder="Add new task">
+<button onclick="addTask()">Add Task</button>
+
+
+<ul id="taskList">
+</ul>
+
+<script>
+    function addTask() {
+        var taskInput = document.getElementById("taskInput");
+        var taskText = taskInput.value.trim();
+        
+        if (taskText !== "") {
+            var taskList = document.getElementById("taskList");
+            var listItem = document.createElement("li");
+            listItem.innerHTML = '<input type="checkbox" onchange="toggleTaskCompletion(this)">' + taskText;
+            taskList.appendChild(listItem);
+            
+            taskInput.value = ""; // Clear input field
+        } else {
+            alert("Please enter a task.");
+        }
+    }
+
+    function toggleTaskCompletion(checkbox) {
+        var listItem = checkbox.parentNode;
+        if (checkbox.checked) {
+            listItem.classList.add("completed");
+        } else {
+            listItem.classList.remove("completed");
+        }
+    }
+</script>
+
+</body>
+</html>
